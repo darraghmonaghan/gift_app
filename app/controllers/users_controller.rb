@@ -8,18 +8,29 @@ class UsersController < ApplicationController
 
 
   def show
+      
+      # Preparing groups invovled in
       group_ids = []
       @group_objects = []
+      @group_owner_objects = []
+
+      # Preparing groups owner / organiser of
+      group_owner_objects = Group.where(:user_id => current_user.id)
+      group_owner_objects.each do | a |
+          @group_owner_objects.push(a)
+      end
+
+
       id = params[:id]
 
           @user = User.find(params[:id])
           if current_user.id == @user.id
               
+              # preparing groups involved in
               @user.memberships.each do | a |
                   id = a.group_id
                   group_ids.push(id)
               end
-
 
               group_ids.each do | a |
                   if a != nil
@@ -27,7 +38,6 @@ class UsersController < ApplicationController
                     @group_objects.push(object)
                   end
               end
-
 
             render :show
           else

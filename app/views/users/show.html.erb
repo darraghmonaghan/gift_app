@@ -4,23 +4,21 @@
 <h1>Hello, <%= @user.firstname %></h1>
 
 
-<h2>Events you are Organizing:</h2>
+	<h2>Events you are Organizing:</h2>
+		<ul>
+			<% @group_owner_objects.each do | m | %>
+				<li>
+					<a href='/groups/<%= m.id %>'><%= m.title %> <%= m.date.strftime('%v') %></a>
+				</li>
+			<% end %>
+		</ul>
 
 
-
-
-<h2>Events you are involved in:</h2>
-
-
-
-
-<ul>
-	<% @group_objects.each do | b | %>
-
-		<li>
-			<a href='/groups/<%= b.id %>'><%= b.title %> <%= b.date.strftime('%v') %></a>
-		</li>
-	
-	<% end %>
-
-</ul>
+	<h2>Events you are involved in:</h2>
+		<ul>
+			<% @group_objects.each do | b | %>
+				<li>
+					<a href='/groups/<%= b.id %>'><%= b.title %> <%= b.date.strftime('%v') %></a>
+				</li>
+			<% end %>
+		</ul>

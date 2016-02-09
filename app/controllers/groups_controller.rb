@@ -8,8 +8,9 @@ class GroupsController < ApplicationController
   def show
   	@group = Group.find(params[:id])
     @founder = User.find(@group.user_id)
+    @members = Membership.where(:group_id => @group.id)
+    # @count = Membership.count(:conditions => {:group_id => @group.id})
 
-    
 
   end
 

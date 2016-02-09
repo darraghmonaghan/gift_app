@@ -20,8 +20,9 @@
             <div class="form-group">
               <%= f.date_field :date, placeholder: 'Date of the Event', class: "form-control", required: true %>
             </div>
-			       <%= f.hidden_field :user_id, :value => @current_user.id %>
-             
+			       
+             <%= f.hidden_field :user_id, :value => @current_user.id %>
+          
              <%= f.submit "Signup!", class: "ghost-button" %>
               <% end %>
              </div>

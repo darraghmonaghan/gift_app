@@ -7,8 +7,9 @@ class GroupsController < ApplicationController
 
   def show
   	@group = Group.find(params[:id])
-
     @founder = User.find(@group.user_id)
+
+    
 
   end
 
@@ -18,6 +19,8 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.create(group_params)
+    member = Membership.create(:user_id => @group.user_id, :group_id => @group.id)
+
       if @group.save
         redirect_to show_group_path(@group.id)
       else

@@ -8,15 +8,21 @@ class SessionsController < ApplicationController
   	@user = User.confirm(params)
   	if @user
   		login(@user)
-  		redirect_to user_show(@user.id)
+  		redirect_to show_user_path(@user.id)
   	else 
-  		redirect_to sessions_new_path
+  		redirect_to sessions_path
   	end
   end
-
 
   def destory
   	session[:user_id] = nil
   	redirect_to root_path
   end
+
+private
+
+  def user_params
+    params.require(:user).permit(:email, :password)  
+  end
+
 end

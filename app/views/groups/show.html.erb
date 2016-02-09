@@ -1,2 +1,11 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+
+<%= render "partials/navbar" %>
+
+
+<h1>Name of Group: <%= @group.title %></h1>
+<h2>Description: <%= @group.description %></h2>
+<h3>Date and Time: <%= @group.date %></h3>
+
+
+<h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
+

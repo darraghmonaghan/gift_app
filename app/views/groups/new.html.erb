@@ -1,2 +1,31 @@
-<h1>Groups#new</h1>
-<p>Find me in app/views/groups/new.html.erb</p>
+
+<%= render "partials/navbar" %>
+
+<h1>Create a New Group for an Event</h1>
+
+  <div id="main-container" class="container">
+    <div class="row">
+
+      <div id="content" class="col-md-12">
+        <div class="form-container">
+        
+            <h2 class="form-signin-heading">Create a Group!</h2>
+            <%= form_for @group do |f| %> 
+            <div class="form-group">
+              <%= f.text_field :title, placeholder: 'Name of Group', class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :description, placeholder: 'Description of the Event', class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.date_field :date, placeholder: 'Date of the Event', class: "form-control", required: true %>
+            </div>
+			       <%= f.hidden_field :user_id, :value => @current_user.id %>
+             
+             <%= f.submit "Signup!", class: "ghost-button" %>
+              <% end %>
+             </div>
+        </div>
+      </div>
+    </div>
+</div>

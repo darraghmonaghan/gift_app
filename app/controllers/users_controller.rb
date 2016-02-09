@@ -22,6 +22,12 @@ class UsersController < ApplicationController
 
   def create
       @user = User.create(user_params)
+      if @user.save
+          login(@user)
+          redirect_to show_user_path(@user.id)
+      else
+          redirect_to root_path
+      end
   end
 
 

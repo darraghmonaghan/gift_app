@@ -5,16 +5,38 @@ class UsersController < ApplicationController
       render :index
   end
 
+
+
   def show
+      group_ids = []
+      @group_objects = []
       id = params[:id]
 
-      @user = User.find(params[:id])
-      if current_user.id == @user.id
-        render :show
-      else
-        redirect_to root_path
-      end
+          @user = User.find(params[:id])
+          if current_user.id == @user.id
+              
+              @user.memberships.each do | a |
+                  id = a.group_id
+                  group_ids.push(id)
+              end
+
+
+              group_ids.each do | a |
+                  if a != nil
+                    object = Group.find(a)
+                    @group_objects.push(object)
+                  end
+              end
+
+
+            render :show
+          else
+            redirect_to root_path
+          end
   end
+
+
+
 
   def new
       @user = User.new
@@ -39,19 +61,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
-  # def update
-  #     user_id = params[:id]
-  #     user = User.find(user_id)
-  #     # get updated data
-  #     updated_attributes = params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar)
-
-  #     # update the client_
-  #     user.update_attributes(updated_attributes)
-  #     user.save(validate: false)
-  #     #redirect to show
-  #     redirect_to "/users/#{user.id}"  # <-- go to show
-  #   end
 
   def destroy
     id = params[:id]

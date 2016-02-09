@@ -4,15 +4,18 @@
 
 <h1>Name of Group: <%= @group.title %></h1>
 <h2>Description: <%= @group.description %></h2>
-<h3>Date and Time: <%= @group.date %></h3>
+<h3>Date and Time: <%= @group.date.strftime('%v') %></h3>
 
 
 <h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
 
 <h3>Number of Group Members: <%= @members.count %></h3>
 
-
-<p><%= @members %></p>
+<ul>
+	<% @group.users.each do | a | %>
+		<li><%= a.firstname %> <%= a.surname %></li>
+	<% end %>
+</ul>
 
 
 

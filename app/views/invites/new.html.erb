@@ -1,0 +1,13 @@
+
+<%= render "partials/navbar" %>
+
+<h1>Invite a Friend to the Group</h1>
+
+	<%= form_for @invite , :url => invites_create_path do |f| %>
+
+	    <%= f.hidden_field :group_id, :value => params[:id] %>
+	    <%= f.label :email %>
+	    <%= f.email_field :email %>
+	    <%= f.submit 'Send' %>
+	
+	<% end %>

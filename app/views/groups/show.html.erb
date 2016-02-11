@@ -2,29 +2,55 @@
 <%= render "partials/fullNavbar" %>
 
 
-<h1>Name of Group: <%= @group.title %></h1>
-<h2>Description: <%= @group.description %></h2>
-<h3>Date and Time: <%= @group.date.strftime('%v') %></h3>
+<div class='container'>
+
+	<!-- GROUP INFORMATION -->
+	<div class='row'>
+		<div class='col-sm-12 col-md-12 col-lg-12'>
+			<h1>Name of Group: <%= @group.title %></h1>
+			<h2>Description: <%= @group.description %></h2>
+			<h3>Date and Time: <%= @group.date.strftime('%v') %></h3>
+			<h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
+			<h3>Number of Group Members: <%= @members.count %></h3>
+		</div>
+	</div>
 
 
-<h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
+	<div class='row'>
 
-<h3>Number of Group Members: <%= @members.count %></h3>
+		<!-- MEMBERS LIST -->
+		<div class='col-sm-12 col-md-6 col-lg-4'>
+			<div class='panel panel-default'>
+				<div class='panel-heading'>Group Members:</div>
+					<ul>
+						<% @group.users.each do | a | %>
+							<li><%= a.firstname %> <%= a.surname %></li>
+						<% end %>
+					</ul>	
+			</div>
+		</div>
 
-<ul>
-	<% @group.users.each do | a | %>
-		<li><%= a.firstname %> <%= a.surname %></li>
-	<% end %>
-</ul>
 
+		<!-- GIFT IDEAS -->
+		<div class='col-sm-12 col-md-6 col-lg-4'>
+				<div class='panel panel-default'>
+					<div class='panel-heading'>Gift Ideas:</div>
 
-<ul>
-	<% @gifts.each do |b| %>
-		<li><%= b.title %></li>
-		<li><%= b.description %></li>
-		<li><%= b.price %></li>
-	<% end %>
-</ul>
+						<% @gifts.each do |b| %>
+							<div class='panel-body'>
+								<h5><%= b.title %></h5>
+								<p><%= b.description %></p>
+								<p><%= b.price %></p>
+								<p><%= b.URL %></p>
+								<p><%= image_tag b.avatar.url(:thumb) %></p>
+							</div>
+					<% end %>
+				</ul>
+		</div>
+
+	</div><!-- Row -->
+
+</div><!-- Container -->	 
 
 
 

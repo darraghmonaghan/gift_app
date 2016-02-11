@@ -16,7 +16,7 @@ def create
 	   	  	if @invite.recipient != nil
 		   	  	InviteMailer.invite_existing_user(@invite).deliver
 				# group = Group.find(@invite.group_id)
-				@invite.recipient.memberships.push(@invite.group.memberships)
+				@invite.recipient.groups.push(@invite.group)
 
 		  	else
 			    InviteMailer.group_invite(@invite, users_new_path(:invite_token => @invite.token)).deliver_now #send the invite data to our mailer to deliver the email

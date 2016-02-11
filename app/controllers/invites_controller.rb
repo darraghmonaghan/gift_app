@@ -5,18 +5,14 @@ def new
 end
 
 def create
-	puts 'HERE ARE THE PARAMS'
-	puts invite_params
-	
 	@invite = Invite.new(invite_params) # Make a new Invite
 	@invite.sender_id = current_user.id # set the sender to the current user
 	   
 	   if @invite.save
-	      
-	   	  	if @invite.recipient != nil
-		   	  	InviteMailer.invite_existing_user(@invite).deliver
-				# group = Group.find(@invite.group_id)
-				@invite.recipient.groups.push(@invite.group)
+	  
+	   	  	if @invite.recipient != nil									# If the person inviting is already signed up
+		   	  	InviteMailer.invite_existing_user(@invite).deliver_now	# Version 1 of email sent
+				@invite.recipient.groups.push(@invite.group)			# Updating the membership list of the existing user - add the group in question
 
 		  	else
 			    InviteMailer.group_invite(@invite, users_new_path(:invite_token => @invite.token)).deliver_now #send the invite data to our mailer to deliver the email

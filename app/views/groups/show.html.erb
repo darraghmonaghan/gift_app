@@ -7,13 +7,14 @@
 	<!-- GROUP INFORMATION -->
 	<div class='row'>
 		<div class='col-sm-12 col-md-12 col-lg-12'>
-			<h1>Name of Group: <%= @group.title %></h1>
-			<h2>Description: <%= @group.description %></h2>
-			<h3>Date and Time: <%= @group.date.strftime('%v') %></h3>
+			<h1>Event: <%= @group.title %></h1>
+			<h2><%= @group.description %></h2>
+			<h3>Date: <%= @group.date.strftime('%v') %></h3>
+			<h3>Time: <%= @group.time %></h3>
 			<h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
-			<h3>Number of Group Members: <%= @members.count %></h3>
 		</div>
 	</div>
+	<hr>
 
 
 	<div class='row'>
@@ -21,7 +22,7 @@
 		<!-- MEMBERS LIST -->
 		<div class='col-sm-12 col-md-6 col-lg-4'>
 			<div class='panel panel-default'>
-				<div class='panel-heading'>Group Members:</div>
+				<div class='panel-heading'>Group Members: <div class='pull-right'>Total: <%= @members.count %></div></div>
 					<ul>
 						<% @group.users.each do | a | %>
 							<li><%= a.firstname %> <%= a.surname %></li>
@@ -36,13 +37,14 @@
 				<div class='panel panel-default'>
 					<div class='panel-heading'>Gift Ideas:</div>
 
-						<% @gifts.each do |b| %>
+						<% @group.gifts.each do |a| %>
 							<div class='panel-body'>
-								<h5><%= b.title %></h5>
-								<p><%= b.description %></p>
-								<p><%= b.price %></p>
-								<p><%= b.URL %></p>
-								<p><%= image_tag b.avatar.url(:thumb) %></p>
+								<h5><%= a.title %></h5>
+								<p><%= a.description %></p>
+								<p><%= a.price %></p>
+								<p><%= a.URL %></p>
+								<%= image_tag a.avatar.url(:thumb) %>
+  
 							</div>
 					<% end %>
 				</ul>

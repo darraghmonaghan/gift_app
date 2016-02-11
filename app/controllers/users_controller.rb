@@ -5,10 +5,7 @@ class UsersController < ApplicationController
       render :index
   end
 
-
-
-  def show
-      
+  def show      
       # Preparing groups invovled in
       group_ids = []
       @group_objects = []

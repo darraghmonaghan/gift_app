@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   	@group = Group.find(params[:id])
     @founder = User.find(@group.user_id)
     @members = Membership.where(:group_id => @group.id)
-    # @count = Membership.count(:conditions => {:group_id => @group.id})
+    @gifts = Gift.where(:group_id => @group.id)
 
 
   end

@@ -18,5 +18,14 @@
 </ul>
 
 
+<ul>
+	<% @gifts.each do |b| %>
+		<li><%= b.title %></li>
+		<li><%= b.description %></li>
+		<li><%= b.price %></li>
+	<% end %>
+</ul>
+
+
 
 

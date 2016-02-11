@@ -22,7 +22,7 @@
 		<!-- MEMBERS LIST -->
 		<div class='col-sm-12 col-md-6 col-lg-4'>
 			<div class='panel panel-default'>
-				<div class='panel-heading'>Group Members: <div class='pull-right'>Total: <%= @members.count %></div></div>
+				<div class='panel-heading'><h4>Member Count: <%= @members.count %></h4></div>
 					<ul>
 						<% @group.users.each do | a | %>
 							<li><%= a.firstname %> <%= a.surname %></li>
@@ -35,17 +35,23 @@
 		<!-- GIFT IDEAS -->
 		<div class='col-sm-12 col-md-6 col-lg-4'>
 				<div class='panel panel-default'>
-					<div class='panel-heading'>Gift Ideas:</div>
+					<div class='panel-heading'><h4>Gift Ideas:</h4></div>
 
 						<% @group.gifts.each do |a| %>
 							<div class='panel-body'>
-								<h5><%= a.title %></h5>
-								<p><%= a.description %></p>
-								<p><%= a.price %></p>
-								<p><%= a.URL %></p>
-								<%= image_tag a.avatar.url(:thumb) %>
-  
+								<div class='row'>
+									<div class='col-xs-4 col-sm-4 col-md-3'>
+										<%= image_tag a.avatar.url(:thumb) %>
+									</div>
+									<div class='col-xs-8 col-sm-8 col-md-9'>
+										<h5><%= a.title %></h5>
+										<p><%= a.description %></p>
+										<p><%= a.price %></p>
+										<p><%= a.URL %></p>
+									</div>
+								</div>
 							</div>
+							<hr>
 					<% end %>
 				</ul>
 		</div>

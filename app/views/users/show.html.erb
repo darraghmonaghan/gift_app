@@ -1,24 +1,32 @@
 <%= render "partials/navbar" %>
 
+<div class='container'>
 
-<h1>Hello, <%= @user.firstname %></h1>
+	<h1>Hello, <%= @user.firstname %></h1>
+	<hr>
+
+	<div class='row'>
+
+		<div class='col-xs-12 col-sm-6 col-md-6'>
+			<div class='list-group'>
+				<div class='list-group-item disabled'><h4>Events you are Organizing:</h4></div>
+						<% @group_owner_objects.each do | m | %>	
+							<a href='/groups/<%= m.id %>' class='list-group-item'><%= m.title %> <%= m.date.strftime('%v') %></a>
+						<% end %>
+			</div>
+		</div>
 
 
-	<h2>Events you are Organizing:</h2>
-		<ul>
-			<% @group_owner_objects.each do | m | %>
-				<li>
-					<a href='/groups/<%= m.id %>'><%= m.title %> <%= m.date.strftime('%v') %></a>
-				</li>
-			<% end %>
-		</ul>
+		<div class='col-xs-12 col-sm-6 col-md-6'>
+			<div class='list-group'>
+				<div class='list-group-item disabled'><h4>Events you are Involved In:</h4></div>
+						<% @group_objects.each do | b | %>
+								<a href='/groups/<%= b.id %>' class='list-group-item'><%= b.title %> <%= b.date.strftime('%v') %></a>
+						<% end %>
+			</div>
+		</div>
 
 
-	<h2>Events you are involved in:</h2>
-		<ul>
-			<% @group_objects.each do | b | %>
-				<li>
-					<a href='/groups/<%= b.id %>'><%= b.title %> <%= b.date.strftime('%v') %></a>
-				</li>
-			<% end %>
-		</ul>
+
+	</div>  <!-- row -->
+</div>  <!-- container -->

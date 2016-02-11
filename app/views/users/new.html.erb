@@ -10,6 +10,11 @@
         
             <h2 class="form-signin-heading">Sign Up Now!</h2>
             <%= form_for @user do |f| %> 
+            
+            <% if @token != nil %>
+                <%= f.hidden_field_tag :invite_token, @token %>
+            <% end %>
+
             <div class="form-group">
               <%= f.email_field :email, placeholder: 'Email', class: "form-control", required: true %>
             </div>

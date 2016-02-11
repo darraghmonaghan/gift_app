@@ -50,12 +50,20 @@ class UsersController < ApplicationController
 
   def new
       @user = User.new
+      @token = params[:invite_token]
   end
 
   def create
       @user = User.create(user_params)
+      @token = params[:invite_token]
       if @user.save
           login(@user)
+
+          if @token != nil
+              group = Invite.find_by_token(@token).group
+              @user.memberships.push(group)
+          end
+
           redirect_to show_user_path(@user.id)
       else
           redirect_to root_path

@@ -5,17 +5,26 @@ def new
 end
 
 def create
-	@group = params[:invite][:group_id]
+	puts 'HERE ARE THE PARAMS'
+	puts invite_params
+	
 	@invite = Invite.new(invite_params) # Make a new Invite
 	@invite.sender_id = current_user.id # set the sender to the current user
+	   
 	   if @invite.save
-	      Invite.create(:email => params[:invite][:group_id], :sender_id => current_user.id, :token => @invite.token)
-	      InviteMailer.group_invite(@invite, users_new_path(:invite_token => @invite.token)).deliver_now #send the invite data to our mailer to deliver the email
-	   	  puts 'email sent, i think......?'
+	      
+	   	  	if @invite.recipient != nil
+		   	  	InviteMailer.invite_existing_user(@invite).deliver
+				# group = Group.find(@invite.group_id)
+				@invite.recipient.memberships.push(@invite.group.memberships)
+
+		  	else
+			    InviteMailer.group_invite(@invite, users_new_path(:invite_token => @invite.token)).deliver_now #send the invite data to our mailer to deliver the email
+			end
 	   # else
 	      # REDIRECT ???
 	   end
-	   redirect_to show_group_path(@group)
+	   redirect_to show_group_path(@invite.group)
 end
 
 

@@ -6,6 +6,28 @@
 	<hr>
 
 	<div class='row'>
+		<div class='col-sm-12 col-md-12 col-lg-12'>
+			<div class='panel panel-default'>
+				<div class='panel-heading'><h4>Your Newsfeed:</h4></div>
+					<div class='panel-body'>
+
+						<div class='col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1'>
+
+ 								<% @newsfeed_posts.each do | x | %>
+									<%= x.content %><div class='pull-right'>Posted in<%= x.group.title %><%= time_ago_in_words(x.created_at) %> by <%= x.user.firstname %></div>
+									
+									<hr>
+								<% end %>
+
+						</div><br>
+
+			        </div>
+			</div>
+		</div>		
+	</div><br>
+
+
+	<div class='row'>
 
 		<div class='col-xs-12 col-sm-6 col-md-6'>
 			<div class='list-group'>
@@ -20,7 +42,7 @@
 		<div class='col-xs-12 col-sm-6 col-md-6'>
 			<div class='list-group'>
 				<div class='list-group-item disabled'><h4>Events you are Involved In:</h4></div>
-						<% @group_objects.each do | b | %>
+						<% @user.groups.each do | b | %>
 								<a href='/groups/<%= b.id %>' class='list-group-item'><%= b.title %> <%= b.date.strftime('%v') %></a>
 						<% end %>
 			</div>

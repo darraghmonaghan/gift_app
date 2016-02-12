@@ -6,10 +6,14 @@ class UsersController < ApplicationController
   end
 
   def show      
-      # Preparing groups invovled in
+      # Preparing newsfeed and posts
       group_ids = []
+      @newsfeed_posts = []
+
+      # Preparing groups invovled in      
       @group_objects = []
       @group_owner_objects = []
+      @user = current_user
 
       # Preparing groups owner / organiser of
       group_owner_objects = Group.where(:user_id => current_user.id)
@@ -17,29 +21,38 @@ class UsersController < ApplicationController
           @group_owner_objects.push(a)
       end
 
+      @user.groups.each do | group |
+          group_ids.push(group.id)
+      end
 
-      id = params[:id]
+      group_ids.each do | id |
+          posts = Post.where(:group_id => id)
+          @newsfeed_posts.push(posts)
+      end
 
-          @user = User.find(params[:id])
-          if current_user.id == @user.id
+
+      # id = params[:id]
+
+      #     @user = User.find(params[:id])
+      #     if current_user.id == @user.id
               
-              # preparing groups involved in
-              @user.memberships.each do | a |
-                  id = a.group_id
-                  group_ids.push(id)
-              end
+      #         # preparing groups involved in
+      #         @user.memberships.each do | a |
+      #             id = a.group_id
+      #             group_ids.push(id)
+      #         end
 
-              group_ids.each do | a |
-                  if a != nil
-                    object = Group.find(a)
-                    @group_objects.push(object)
-                  end
-              end
+      #         group_ids.each do | a |
+      #             if a != nil
+      #               object = Group.find(a)
+      #               @group_objects.push(object)
+      #             end
+      #         end
 
-            render :show
-          else
-            redirect_to root_path
-          end
+      #       render :show
+      #     else
+      #       redirect_to root_path
+      #     end
   end
 
 

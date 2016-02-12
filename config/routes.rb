@@ -54,7 +54,13 @@ Rails.application.routes.draw do
 
   get '/groups/:id/gifts', to: 'gifts#new', as: 'gifts_new'
 
-  post 'gifts/create', to: 'gifts#create', as: 'gifts_create'
+  post '/gifts/create', to: 'gifts#create', as: 'gifts_create'
+
+############################
+
+  get '/posts/new', to: 'posts#new', as: 'posts_new'
+
+  post '/posts/create', to: "posts#create", as: 'posts_create'
 
 
 end

@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @post = Post.new
   	@group = Group.find(params[:id])
     @founder = User.find(@group.user_id)
     @members = Membership.where(:group_id => @group.id)     ## Could refactor, just use @group.memberships.count...

@@ -28,16 +28,6 @@ class UsersController < ApplicationController
               @newsfeed_posts.push(posts)
           end
       end
-
-      # @group_ids.each do | id |
-      #     puts 'Group ID going in'
-      #     puts id
-      #     puts id.classof
-      #     posts = Post.where(:group_id => id)
-      #         posts.each do | single_post |
-      #             @newsfeed_posts.push(single_post)              
-      #         end
-      # end
       
   end
 

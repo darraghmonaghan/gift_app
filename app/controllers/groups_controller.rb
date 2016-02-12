@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.create(group_params)
-    Membership.create(:user_id => @group.user_id, :group_id => @group.id)
+    #Membership.create(:user_id => @group.user_id, :group_id => @group.id)
 
       if @group.save
         redirect_to show_group_path(@group.id)
@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
 private
 
   def group_params
-    params.require(:group).permit(:title, :description, :date, :user_id)  
+    params.require(:group).permit(:title, :description, :date, :time, :user_id)  
   end
 
 

@@ -1,15 +1,16 @@
 
 <%= render "partials/navbar" %>
 
-<h1>New Gift</h1>
+
 
 
 <div id="main-container" class="container">
     <div class="row">
-      <div id="content" class="col-md-12">
+      <div id="content" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
         <div class="form-container">
         
-            <h2 class="form-signin-heading">Propose a New Gift!</h2>
+            <h2 class="form-signin-heading text-center">Propose a New Gift!</h2>
 		        <%= form_for @gift , :url => gifts_create_path do |f| %> 
 
 		            <%= f.hidden_field :group_id, :value => params[:id] %>
@@ -31,12 +32,14 @@
 		              <%= f.number_field :price, placeholder: 'Retail Price', class: "form-control", required: true %>
 		            </div>
 
-		            <div>
-		            	<p>Select an Image of the Gift to Upload</p>
-		            	<%= f.file_field :avatar %>
+		            <div class='panel panel-default'>
+		            	<div class='panel-body'>
+			            	<p>Select an Image of the Gift to Upload</p>
+			            	<%= f.file_field :avatar %>
+			            </div>
 		           	</div><br>
 
-		            <%= f.submit "Signup!", class: "ghost-button" %>
+		            <%= f.submit "Signup!", class: "btn btn-default ghost-button" %>
 
               	<% end %>
              </div>

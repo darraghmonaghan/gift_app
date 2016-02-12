@@ -7,11 +7,21 @@
 	<!-- GROUP INFORMATION -->
 	<div class='row'>
 		<div class='col-sm-12 col-md-12 col-lg-12'>
-			<h1>Event: <%= @group.title %></h1>
-			<h2><%= @group.description %></h2>
-			<h3>Date: <%= @group.date.strftime('%v') %></h3>
-			<h3>Time: <%= @group.time %></h3>
-			<h3>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h3>
+			<h1 class='text-center'><%= @group.title %></h1>
+			<h3 class='text-center'><%= @group.description %></h3>
+
+			<div class='row'>
+				<div class='text-center col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+					<h4>Date: <%= @group.date.strftime('%v') %></h4>
+				</div>
+				<div class='text-center col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+					<h4>Time: <%= @group.time %></h4>
+				</div>
+				<div class='text-center col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+					<h4>Group Creator: <%= @founder.firstname %> <%= @founder.surname %></h4>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<hr>
@@ -38,10 +48,10 @@
 					            <%= f.hidden_field :user_id, :value => @current_user.id %>
 
 					            <div class="form-group">
-					              <%= f.text_field :content, placeholder: 'Post Content', class: "form-control", required: true %>
+					              <%= f.text_field :content, placeholder: 'What would you like to say?', class: "form-control", required: true %>
 					            </div>
 
-					            <%= f.submit "Post Comment!", class: "ghost-button" %>
+					            <%= f.submit "Post Comment!", class: "btn btn-default ghost-button" %>
 
 			              	<% end %>
 			            </div>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show      
       # Preparing newsfeed and posts
-      group_ids = []
+      @group_ids = []
       @newsfeed_posts = []
 
       # Preparing groups invovled in      
@@ -22,37 +22,23 @@ class UsersController < ApplicationController
       end
 
       @user.groups.each do | group |
-          group_ids.push(group.id)
+          @group_ids.push(group.id)
+
+          group.posts.each do | posts |
+              @newsfeed_posts.push(posts)
+          end
       end
 
-      group_ids.each do | id |
-          posts = Post.where(:group_id => id)
-          @newsfeed_posts.push(posts)
-      end
-
-
-      # id = params[:id]
-
-      #     @user = User.find(params[:id])
-      #     if current_user.id == @user.id
-              
-      #         # preparing groups involved in
-      #         @user.memberships.each do | a |
-      #             id = a.group_id
-      #             group_ids.push(id)
+      # @group_ids.each do | id |
+      #     puts 'Group ID going in'
+      #     puts id
+      #     puts id.classof
+      #     posts = Post.where(:group_id => id)
+      #         posts.each do | single_post |
+      #             @newsfeed_posts.push(single_post)              
       #         end
-
-      #         group_ids.each do | a |
-      #             if a != nil
-      #               object = Group.find(a)
-      #               @group_objects.push(object)
-      #             end
-      #         end
-
-      #       render :show
-      #     else
-      #       redirect_to root_path
-      #     end
+      # end
+      
   end
 
 

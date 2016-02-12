@@ -23,11 +23,12 @@
 					<div class='panel-body'>
 
 						<div class='col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1'>
-							<ul>
+
 								<% @group.posts.each do | x | %>
-									<li><%= x.content %><%= x.user.firstname %><%= x.created_at %></li>
+									<%= x.content %><div class='pull-right'><%= time_ago_in_words(x.created_at) %> by <%= x.user.firstname %></div>
+									
+									<hr>
 								<% end %>
-							</ul>
 						</div><br>
 
 						<div class='col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1'>
@@ -81,9 +82,12 @@
 										<h5><%= a.title %></h5>
 										<p><%= a.description %></p>
 										<p><%= a.price %></p>
-										<p><%= a.URL %></p>
+										<a href='<%= a.URL %>'>Find out More!</a>
+
+<!-- 				        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+
 									</div>
-								</div>
+								</div> <!-- Row -->
 							</div>
 							<hr>
 					<% end %>
@@ -91,7 +95,6 @@
 		</div>
 
 	</div><!-- Row -->
-
 </div><!-- Container -->	 
 
 

@@ -94,8 +94,8 @@
 										<p><%= a.price %></p>
 										<a href='<%= a.URL %>'>Find out More!</a>
 
-<!-- 				        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
-
+										<%= button_to 'Up Vote!', votes_create_path(:vote => { :gift_id => a.id, :user_id => @current_user.id}), class: "btn btn-default", :method => :post %>
+							
 									</div>
 								</div> <!-- Row -->
 							</div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+
+
   root to: 'sessions#new'
 
 ########################
@@ -11,8 +13,6 @@ Rails.application.routes.draw do
   post '/groups', to: 'groups#create', as: 'create_group'
 
   get '/groups/:id', to: 'groups#show', as: 'show_group'
-
-
 
   get '/groups/:id/edit', to: 'groups#edit'
 
@@ -62,5 +62,10 @@ Rails.application.routes.draw do
 
   post '/posts/create', to: "posts#create", as: 'posts_create'
 
+##############################
+
+  get 'votes/new', to: 'votes#new', as: 'votes_new'
+
+  post 'votes/create', to: 'votes#create', as: 'votes_create'
 
 end

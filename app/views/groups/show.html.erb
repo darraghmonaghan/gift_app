@@ -65,7 +65,7 @@
 	<div class='row'>
 
 		<!-- MEMBERS LIST -->
-		<div class='col-sm-12 col-md-6 col-lg-4'>
+		<div class='col-sm-12 col-md-6 col-lg-6'>
 			<div class='panel panel-default'>
 				<div class='panel-heading'><h4>Member Count: <%= @members.count %></h4></div>
 					<ul>
@@ -78,7 +78,7 @@
 
 
 		<!-- GIFT IDEAS -->
-		<div class='col-sm-12 col-md-6 col-lg-4'>
+		<div class='col-sm-12 col-md-6 col-lg-6'>
 				<div class='panel panel-default'>
 					<div class='panel-heading'><h4>Gift Ideas:</h4></div>
 
@@ -89,13 +89,21 @@
 										<%= image_tag a.avatar.url(:thumb) %>
 									</div>
 									<div class='col-xs-8 col-sm-8 col-md-9'>
-										<h5><%= a.title %></h5>
-										<p><%= a.description %></p>
-										<p><%= a.price %></p>
+										<h4><%= a.title %></h4>
+										<h5><%= a.description %></h5>
 										<a href='<%= a.URL %>'>Find out More!</a>
+										<hr>
 
-										<%= button_to 'Up Vote!', votes_create_path(:vote => { :gift_id => a.id, :user_id => @current_user.id}), class: "btn btn-default", :method => :post %>
-							
+										<div class='row'>
+											<div class='col-xs-7 col-sm-6 col-md-6'>
+												<p><strong>Gift Price:</strong> <%= a.price %></p>
+												<p><strong>No. of Votes:</strong> <%= a.votes.count %></p>
+											</div>
+											<div class='col-xs-5 col-sm-6 col-md-6'>				
+												<%= button_to 'Up Vote!', votes_create_path(:vote => { :gift_id => a.id, :user_id => @current_user.id}), class: "btn btn-default", :method => :post %>
+											</div>
+										</div>
+
 									</div>
 								</div> <!-- Row -->
 							</div>
